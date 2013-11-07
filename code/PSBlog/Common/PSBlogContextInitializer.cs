@@ -23,7 +23,7 @@ namespace PSBlog.Common
                 UserName = "admin",
             };
 
-            await context.SaveChangesAsync();            
+            context.SaveChanges();            
         }
     }
 }
