@@ -28,7 +28,7 @@ namespace PSBlog.Common
 
             context.Users.Add(admin);
 
-            await context.SaveChangesAsync();            
+            context.SaveChanges();            
         }
     }
 }
