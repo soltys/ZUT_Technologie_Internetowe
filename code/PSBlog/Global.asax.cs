@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
@@ -21,7 +22,9 @@ namespace PSBlog
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);         
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            Database.SetInitializer(new PSBlog.Common.PSBlogContextInitializer());
         }
     }
 }

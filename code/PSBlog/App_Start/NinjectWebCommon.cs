@@ -12,7 +12,7 @@ namespace PSBlog.App_Start
     using Ninject.Web.Common;
     using System.Reflection;
     using System.Web.Mvc;
-    using PSBlog.Components;
+    using PSBlog.Common;
 
     public static class NinjectWebCommon 
     {

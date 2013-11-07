@@ -1,5 +1,6 @@
 ﻿
 using Ninject.Extensions.Logging;
+using PSBlog.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,7 @@ namespace PSBlog.Controllers
         public ActionResult Index()
         {
             _log.Info("NLog Test");
+            var i = new PSBlogContext().Blogs.Count();
             return View();
         }
 	}
