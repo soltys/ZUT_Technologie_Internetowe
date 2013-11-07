@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PSBlog.Models
 {
-    public class Comment
+    public class Comment : IIdentifiable
     {
         public int Id { get; set; }
         public string Content { get; set; }

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace PSBlog.Models
 {
-    public class User
+    public class User : IIdentifiable
     {
         public int Id { get; set; }
         public string UserName { get; set; }

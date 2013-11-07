@@ -5,9 +5,8 @@ using System.Text;
 
 namespace PSBlog.Models
 {
-    public class Tag : IIdentifiable
+    public interface IIdentifiable
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        int Id { get; set; }
     }
 }

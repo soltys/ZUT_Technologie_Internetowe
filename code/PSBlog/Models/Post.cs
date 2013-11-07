@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PSBlog.Models
 {
-    public class Post
+    public class Post : IIdentifiable
     {
         public int Id { get; set; }
         public string Title { get; set; }

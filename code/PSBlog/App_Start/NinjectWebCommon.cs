@@ -13,6 +13,9 @@ namespace PSBlog.App_Start
     using System.Reflection;
     using System.Web.Mvc;
     using PSBlog.Common;
+    using Messim.UI.Authentication;
+    using PSBlog.Authentication;
+    using PSBlog.Repository;
 
     public static class NinjectWebCommon 
     {
@@ -58,6 +61,10 @@ namespace PSBlog.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Load(Assembly.GetExecutingAssembly());
+
+            kernel.Bind<IPSBlogMembershipProvider>().To<PSBlogMembershipProvider>();
+            kernel.Bind<IUserRepository>().To<UserRepository>();
+
         }        
     }
 }
