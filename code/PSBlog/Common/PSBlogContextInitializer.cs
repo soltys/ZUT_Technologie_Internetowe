@@ -8,27 +8,48 @@ using System.Web;
 
 namespace PSBlog.Common
 {
-    public class PSBlogContextInitializer:DropCreateDatabaseAlways<PSBlogContext>
+    public class PSBlogContextInitializer : DropCreateDatabaseAlways<PSBlogContext>
     {
-        protected override async void Seed(PSBlogContext context)
+        protected override void Seed(PSBlogContext context)
         {
-            Role administrator = new Role();
-            administrator.Name = "Administrator";
-            administrator.PermissionLevel = 1000;
-
+            Role administrator = new Role()
+            {
+                Name = "Administrator",
+                PermissionLevel = 1000
+            };
             context.Roles.Add(administrator);
-
 
             User admin = new User
             {
                 UserName = "admin",
                 Password = SHA.CreateSHA1Hash("milk"),
-                Role = administrator               
+                Role = administrator
             };
-
             context.Users.Add(admin);
 
-            context.SaveChanges();            
+            Tag tag = new Tag()
+            {
+                Name = "mytag"
+            };
+            context.Tags.Add(tag);
+
+
+            Post post = new Post
+            {
+                Title = "Default post title",
+                Content = "<p>asd</p>",
+                Tags = new[] { tag }
+            };
+            context.Posts.Add(post);
+
+            Blog defaultBlog = new Blog
+            {
+                Title = "Default blog Title",
+                Owner = admin
+            };
+            context.Blogs.Add(defaultBlog);
+
+            context.SaveChanges();
         }
     }
 }

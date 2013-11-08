@@ -22,8 +22,7 @@ namespace PSBlog.Controllers
         // GET: /Home/
         public ActionResult Index()
         {
-            _log.Info("NLog Test");
-            var i = new PSBlogContext().Blogs.Count();
+            _log.Info("NLog Test");      
             return View();
         }
 	}
