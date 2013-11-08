@@ -186,6 +186,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Readme\Elmah.txt" />
+    <Content Include="Content\bootstrap\css\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap\css\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap\css\bootstrap.css" />
+    <Content Include="Content\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\bootstrap\css\justified-nav.css" />
+    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\icons\github.png" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -251,7 +258,12 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="NLog.config" />
+    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.woff" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
     <Content Include="Scripts\jquery-ui-1.10.3.js" />
@@ -282,17 +294,10 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Manage.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
-    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\List.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

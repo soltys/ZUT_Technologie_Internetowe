@@ -1,0 +1,26 @@
+﻿@model PSBlog.Models.User
+
+@{
+    ViewBag.Title = "Login";
+}
+@Styles.Render("~/Content/LoginStyle.css")
+<form class="form-signin">
+    <h2 class="form-signin-heading">Login in</h2>
+    <input type="text" class="form-control" placeholder="User name" required autofocus>
+    <input type="password" class="form-control" placeholder="Password" required>
+    <label class="checkbox">
+        <input type="checkbox" value="remember-me"> Remember me
+    </label>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+</form>
+<p class="form-signin">
+    <a href="@Url.Action("Register","User")">Register new user</a>
+</p>
+
+@section scripts{
+    <script>
+        $(function () {
+            $("#nav-log-in").addClass('active');
+        });
+    </script>
+}

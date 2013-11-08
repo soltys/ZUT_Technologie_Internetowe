@@ -4,13 +4,40 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/bootstrap/css/bootstrap.min.css")
+    @Styles.Render("~/Content/bootstrap/css/justified-nav.css")
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
 </head>
 <body>
-    @RenderBody()
+
+
+    <div class="container">
+        <div class="masthead">
+            <h3 class="text-muted">PsBlogs</h3>
+            <ul class="nav nav-justified">
+                <li id="nav-home"><a href="@Url.Action("Index","Home")"> <span class="glyphicon glyphicon-home"></span>
+Home </a></li>
+                <li id="nav-blog-list"><a href="@Url.Action("List", "Blog")">List of blogs</a></li>
+                
+                <li id="nav-log-in"><a href=" @Url.Action("Login", "User") ">Log in</a></li>
+            </ul>
+        </div>
+
+        
+        @RenderBody()
+        <!-- Site footer -->
+        <div class="footer">
+            <p>&copy; Paweł 'soltys' Sołtysiak 2013</p>
+            <p><a href="http://github.com/soltys"><img height="32" width="32" src="@Url.Content("~/Content/icons/github.png")" alt="github icon" /></a></p>
+        </div>
+
+    </div> <!-- /container -->
+
 
     @Scripts.Render("~/bundles/jquery")
+    @Styles.Render("~/Scripts/bootstrap.min.js")
     @RenderSection("scripts", required: false)
 </body>
 </html>
