@@ -6,36 +6,20 @@
 @Styles.Render("~/Content/LoginStyle.css")
 <h2>Register</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Register", "User", FormMethod.Post, new { @class = "form-signin" }))
 {
     @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
     
-    <div class="form-horizontal">
-        <h4>User</h4>
-        <hr />
-        @Html.ValidationSummary(true)
+    @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", placeholder = "User name" })
+    @Html.ValidationMessageFor(model => model.UserName)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.UserName, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UserName)
-                @Html.ValidationMessageFor(model => model.UserName)
-            </div>
-        </div>
+    @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Password" })
+    @Html.ValidationMessageFor(model => model.Password)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Password)
-                @Html.ValidationMessageFor(model => model.Password)
-            </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+
+
 }
 
