@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PSBlog.Repository
 {
-    public interface IRepository<T> where T : IIdentifiable
+    public interface IRepository<T> : IDisposable where T : IIdentifiable
     {
         IList<T> FetchAll();
         void Add(T entity);

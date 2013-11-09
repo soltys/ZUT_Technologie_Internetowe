@@ -9,17 +9,15 @@
 @using (Html.BeginForm("Register", "User", FormMethod.Post, new { @class = "form-signin" }))
 {
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+    @Html.ValidationSummary(false)
     
      <h2 class="form-signin-heading">Register</h2>
     @Html.TextBoxFor(model => model.User.UserName, new { @class = "form-control", placeholder = "User name" })
-    @Html.ValidationMessageFor(model => model.User.UserName)
-
-    @Html.PasswordFor(model => model.User.Password, new { @class = "form-control", placeholder = "Password" })
-    @Html.ValidationMessageFor(model => model.User.Password)
     
+    @Html.PasswordFor(model => model.User.Password, new { @class = "form-control", placeholder = "Password" })
+        
     @Html.PasswordFor(model => model.PasswordAgain, new { @class = "form-control", placeholder = "Password again" })
-    @Html.ValidationMessageFor(model => model.PasswordAgain)
+
 
     <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
 

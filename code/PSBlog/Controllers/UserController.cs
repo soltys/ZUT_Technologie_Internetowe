@@ -89,7 +89,7 @@ namespace PSBlogs.Controllers
         {
             if (!ValidateRegister(registerModel.User.UserName, registerModel.User.Password, registerModel.PasswordAgain))
             {
-                return View(registerModel);
+                return View();
             }
 
             registerModel.User.Password = SHA.CreateSHA1Hash(registerModel.User.Password);
@@ -127,6 +127,18 @@ namespace PSBlogs.Controllers
         public ActionResult List()
         {
             return View(_userRepository.FetchAll());
+     
+        
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if(disposing)
+            {
+                _userRepository.Dispose();
+            }
+            
+            base.Dispose(disposing);
         }
     }
 }

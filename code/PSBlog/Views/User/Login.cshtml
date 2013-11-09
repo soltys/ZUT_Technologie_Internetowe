@@ -9,15 +9,12 @@
 @using (Html.BeginForm("Login", "User", FormMethod.Post, new { @class = "form-signin" }))
 {
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+    @Html.ValidationSummary(false)
     
     <h2 class="form-signin-heading">Login in</h2>
     @Html.TextBoxFor(model => model.User.UserName, new { @class = "form-control", placeholder = "User name" })
-    @Html.ValidationMessageFor(model => model.User.UserName)
-
     @Html.PasswordFor(model => model.User.Password, new { @class = "form-control", placeholder = "Password" })
-    @Html.ValidationMessageFor(model => model.User.Password)
-    
+       
     <label class="checkbox">        
         @Html.CheckBoxFor(model => model.RememberMe) Remember me
     </label>

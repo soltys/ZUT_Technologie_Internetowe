@@ -16,10 +16,13 @@ namespace PSBlog.App_Start
     using Messim.UI.Authentication;
     using PSBlog.Authentication;
     using PSBlog.Repository;
+    using Ninject.Extensions.Logging;
 
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
+
+        public static IKernel Kernel { get { return bootstrapper.Kernel; } }
 
         /// <summary>
         /// Starts the application
@@ -28,7 +31,7 @@ namespace PSBlog.App_Start
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
-            bootstrapper.Initialize(CreateKernel);
+            bootstrapper.Initialize(CreateKernel);            
         }
         
         /// <summary>
@@ -51,6 +54,8 @@ namespace PSBlog.App_Start
             
             RegisterServices(kernel);
             ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory(kernel));
+            DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
+                        
             return kernel;
         }
 
@@ -64,7 +69,7 @@ namespace PSBlog.App_Start
 
             kernel.Bind<IPSBlogMembershipProvider>().To<PSBlogMembershipProvider>();
             kernel.Bind<IUserRepository>().To<UserRepository>();
-
+            
         }        
     }
 }
