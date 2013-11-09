@@ -10,5 +10,6 @@ namespace PSBlog.Repository
     public interface IUserRepository:IRepository<User>
     {
         User FindByUserName(string username);
+        bool IsUserNameTaken(string userName);
     }
 }

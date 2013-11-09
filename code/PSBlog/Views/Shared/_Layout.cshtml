@@ -19,9 +19,16 @@
             <ul class="nav nav-justified">
                 <li id="nav-home"><a href="@Url.Action("Index","Home")"> <span class="glyphicon glyphicon-home"></span>
 Home </a></li>
-                <li id="nav-blog-list"><a href="@Url.Action("List", "Blog")">List of blogs</a></li>
+                <li id="nav-blog-list"><a href="@Url.Action("List", "Blog")"><span class="glyphicon glyphicon-list"></span> Blog list</a></li>
                 
-                <li id="nav-log-in"><a href=" @Url.Action("Login", "User") ">Log in</a></li>
+                @if(User.Identity.IsAuthenticated)
+                {
+                    <li id="nav-log-in"><a href=" @Url.Action("Index", "User")"> <span class="glyphicon glyphicon-user"></span> @User.Identity.Name</a></li>
+                }
+                else
+                {
+                    <li id="nav-log-in"><a href=" @Url.Action("Login", "User")"> Log in</a></li>
+                }
             </ul>
         </div>
 

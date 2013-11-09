@@ -1,18 +1,33 @@
-﻿@model PSBlog.Models.User
+﻿@model PSBlog.ViewModels.LoginModel
 
 @{
     ViewBag.Title = "Login";
 }
 @Styles.Render("~/Content/LoginStyle.css")
-<form class="form-signin">
+
+
+@using (Html.BeginForm("Login", "User", FormMethod.Post, new { @class = "form-signin" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
     <h2 class="form-signin-heading">Login in</h2>
-    <input type="text" class="form-control" placeholder="User name" required autofocus>
-    <input type="password" class="form-control" placeholder="Password" required>
-    <label class="checkbox">
-        <input type="checkbox" value="remember-me"> Remember me
+    @Html.TextBoxFor(model => model.User.UserName, new { @class = "form-control", placeholder = "User name" })
+    @Html.ValidationMessageFor(model => model.User.UserName)
+
+    @Html.PasswordFor(model => model.User.Password, new { @class = "form-control", placeholder = "Password" })
+    @Html.ValidationMessageFor(model => model.User.Password)
+    
+    <label class="checkbox">        
+        @Html.CheckBoxFor(model => model.RememberMe) Remember me
     </label>
+
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-</form>
+
+
+}
+
+
 <p class="form-signin">
     <a href="@Url.Action("Register","User")">Register new user</a>
 </p>

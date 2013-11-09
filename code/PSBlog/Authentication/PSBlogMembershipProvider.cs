@@ -47,7 +47,8 @@ namespace PSBlog.Authentication
 
         public override bool ValidateUser(string username, string password)
         {
-            if (string.IsNullOrEmpty(password.Trim())) return false;
+
+            if (string.IsNullOrEmpty(password)) return false;
             string hash = SHA.CreateSHA1Hash(password);
            
                 User user = _userRepository.FindByUserName(username);

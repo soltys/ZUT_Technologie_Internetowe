@@ -16,6 +16,11 @@ namespace PSBlog.Repository
         public User FindByUserName(string username)
         {
             return _db.Users.FirstOrDefault(user => user.UserName == username);
-        }        
+        }
+
+        public bool IsUserNameTaken(string username)
+        {
+            return _db.Users.Any() && _db.Users.ToList().Any(x => x.UserName == username);
+        }
     }
 }
