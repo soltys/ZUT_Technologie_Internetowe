@@ -38,6 +38,7 @@ namespace PSBlog.Common
             {
                 Title = "Default post title",
                 Content = "<p>asd</p>",
+                DatePosted = DateTime.Now,
                 Tags = new[] { tag }
             };
             context.Posts.Add(post);
@@ -45,8 +46,11 @@ namespace PSBlog.Common
             Blog defaultBlog = new Blog
             {
                 Title = "Default blog Title",
-                Owner = admin
+                Owner = admin,
+                Posts = new[]{post}
             };
+            defaultBlog.UrlSlug = Slug.GenerateSlug(defaultBlog.Title);
+
             context.Blogs.Add(defaultBlog);
 
             context.SaveChanges();

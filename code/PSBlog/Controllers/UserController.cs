@@ -37,8 +37,7 @@ namespace PSBlogs.Controllers
 
         [HttpPost]
         public ActionResult Login(LoginModel model, string returnUrl)
-        {
-           
+        {           
             if (!ValidateLogOn(model.User.UserName, model.User.Password))
             {
                 return View();

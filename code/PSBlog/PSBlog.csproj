@@ -181,6 +181,8 @@
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\BlogRepository.cs" />
+    <Compile Include="Repository\IBlogRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\IUserRepository.cs" />
     <Compile Include="Repository\RepositoryBase.cs" />
@@ -197,6 +199,8 @@
     <Content Include="Content\bootstrap\css\justified-nav.css" />
     <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\icons\github.png" />
+    <Content Include="Content\icons\linkedin.png" />
+    <Content Include="Content\icons\twitter.png" />
     <Content Include="Content\LoginStyle.css" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
