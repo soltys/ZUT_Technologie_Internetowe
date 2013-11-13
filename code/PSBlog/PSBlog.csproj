@@ -163,6 +163,7 @@
     <Compile Include="Authentication\IPSBlogMembershipProvider.cs" />
     <Compile Include="Authentication\PSBlogMembershipProvider.cs" />
     <Compile Include="Authentication\PSBlogRoleProvider.cs" />
+    <Compile Include="Repository\CommentRepository.cs" />
     <Compile Include="Common\NinjectDependencyResolver.cs" />
     <Compile Include="Common\PSBlogContext.cs" />
     <Compile Include="Common\NinjectControllerFactory.cs" />
@@ -173,6 +174,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Repository\PostRepository.cs" />
+    <Compile Include="Repository\ICommentRepository.cs" />
+    <Compile Include="Repository\IPostRepository.cs" />
     <Compile Include="Models\Blog.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\IIdentifiable.cs" />
@@ -270,6 +274,7 @@
     <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Repository\RepositoryClassDiagram.cd" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

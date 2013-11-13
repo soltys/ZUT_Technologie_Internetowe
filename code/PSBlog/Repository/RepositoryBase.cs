@@ -12,7 +12,7 @@ using System.Web.Mvc;
 
 namespace PSBlog.Repository
 {
-    internal abstract class RepositoryBase<T> where T : class
+    public abstract class RepositoryBase<T> where T : class
     {       
         
         protected PSBlogContext _db;
