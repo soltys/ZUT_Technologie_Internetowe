@@ -6,3 +6,12 @@
 <h2>Index</h2>
 
 <p>@Html.ActionLink("Log out", "LogOut")</p>
+
+
+@section scripts{
+    <script>
+        $(function () {
+            $("#nav-log-in").addClass('active');
+        });
+    </script>
+}
