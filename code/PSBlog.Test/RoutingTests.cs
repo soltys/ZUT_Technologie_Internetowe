@@ -51,6 +51,18 @@ namespace PSBlog.Test
             });
         }
 
+        [Test]
+        public void slash_b_blogSlug_to_blog_details()
+        {
+            const string url = "~/b/Soltys_AweSomeBlog";
+            RouteHelpers.TestRoute(url, new
+            {
+                Controller = "Blog",
+                Action = "Details",
+                BlogSlug = "Soltys_AweSomeBlog",
+            });
+        }
+
        
     }
 }
