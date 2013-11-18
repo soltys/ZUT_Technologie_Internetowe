@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="PSBlog.Repository.BlogRepository">
-    <Position X="0.5" Y="11.5" Width="1.5" />
+    <Position X="0.75" Y="14" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Repository\BlogRepository.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -16,7 +16,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="PSBlog.Repository.UserRepository">
-    <Position X="2.75" Y="11.5" Width="1.5" />
+    <Position X="5.25" Y="11.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
       <FileName>Repository\UserRepository.cs</FileName>
@@ -24,7 +24,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="PSBlog.Repository.PostRepository">
-    <Position X="5" Y="11.5" Width="1.5" />
+    <Position X="3.75" Y="14" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Repository\PostRepository.cs</FileName>
@@ -39,10 +39,17 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
+  <Class Name="PSBlog.Repository.UrlSlugRepository&lt;T&gt;">
+    <Position X="2.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Repository\UrlSlugRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Interface Name="PSBlog.Repository.IBlogRepository">
     <Position X="0.5" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Repository\IBlogRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>

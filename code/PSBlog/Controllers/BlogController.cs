@@ -16,7 +16,7 @@ namespace PSBlog.Controllers
 {
     public class BlogController : Controller
     {
-        
+
         private readonly ILogger _logger;
         private IBlogRepository _blogRepository;
         private IUserRepository _userRepository;
@@ -37,18 +37,18 @@ namespace PSBlog.Controllers
             return View(_blogRepository.FetchAll());
         }
 
-        
+
         // GET: /Blog/Create
         public ActionResult Create()
         {
             return View();
         }
 
-   
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Create([Bind(Include="Id,Title")] Blog blog)
+        public ActionResult Create([Bind(Include = "Id,Title")] Blog blog)
         {
             if (ModelState.IsValid)
             {
@@ -56,8 +56,8 @@ namespace PSBlog.Controllers
                 blog.Owner = _userRepository.FindByUserName(User.Identity.Name);
                 _blogRepository.Add(blog);
                 _blogRepository.Save();
-                
-                return RedirectToAction("Index");
+
+                return RedirectToAction("Details", new { blogSlug = blog.UrlSlug });
             }
 
             return View(blog);
@@ -65,10 +65,14 @@ namespace PSBlog.Controllers
 
 
 
- 
+        public ActionResult Details(string blogSlug)
+        {
+            Blog blog = _blogRepository.GetBlogBySlugUrl(blogSlug);
+            return View(blog);
+        }
 
         protected override void Dispose(bool disposing)
-        {           
+        {
             if (disposing)
             {
                 _logger.Info("Disposing repositories");

@@ -166,6 +166,7 @@
     <Compile Include="Authentication\IPSBlogMembershipProvider.cs" />
     <Compile Include="Authentication\PSBlogMembershipProvider.cs" />
     <Compile Include="Authentication\PSBlogRoleProvider.cs" />
+    <Compile Include="Models\IUrlSlug.cs" />
     <Compile Include="Repository\CommentRepository.cs" />
     <Compile Include="Common\NinjectDependencyResolver.cs" />
     <Compile Include="Common\PSBlogContext.cs" />
@@ -194,6 +195,7 @@
     <Compile Include="Repository\IUserRepository.cs" />
     <Compile Include="Repository\RepositoryBase.cs" />
     <Compile Include="Repository\UserRepository.cs" />
+    <Compile Include="Repository\UrlSlugRepository.cs" />
     <Compile Include="ViewModels\LoginModel.cs" />
     <Compile Include="ViewModels\RegisterModel.cs" />
   </ItemGroup>
@@ -322,6 +324,7 @@
     <Content Include="Views\Blog\Edit.cshtml" />
     <Content Include="Views\Blog\Index.cshtml" />
     <Content Include="Views\Blog\List.cshtml" />
+    <Content Include="Views\Shared\_BlogLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

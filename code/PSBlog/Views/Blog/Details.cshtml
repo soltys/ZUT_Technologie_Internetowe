@@ -1,26 +1,37 @@
 ﻿@model PSBlog.Models.Blog
-
 @{
     ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_BlogLayout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>@Model.Title</h2>
 
-<div>
-    <h4>Blog</h4>
-	<hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
+@foreach (var post in Model.Posts)
+{
+    <hr />
+    <div>
+        <h3><a href="/b/@Model.UrlSlug/@post.UrlSlug">@post.Title</a></h3>
+        <div class="row">
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+            <div class="col-md-4">
+                @post.DatePosted
+            </div>
+            <div class="col-md-4">
+                <p>
+                    Tags: 
+                    @foreach (var tag in post.Tags)
+                    {
+                        <span> @tag.Name</span>
+                    }
+                </p>
+            </div>
+        </div>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+        <div>
+            @(new HtmlString(@post.Content))
+        </div>
+
+    </div>
+
+}

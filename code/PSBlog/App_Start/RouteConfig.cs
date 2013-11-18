@@ -15,8 +15,8 @@ namespace PSBlog
 
             routes.MapRoute(
                name: "BlogShortcut",
-               url: "b/{blogSlug}",
-               defaults: new { controller = "Blog", action = "Details", blogSlug = "" }
+               url: "b/{blogSlug}/{postSlug}",
+               defaults: new { controller = "Blog", action = "Details", blogSlug = "", postSlug = UrlParameter.Optional }
            );
 
             routes.MapRoute(
