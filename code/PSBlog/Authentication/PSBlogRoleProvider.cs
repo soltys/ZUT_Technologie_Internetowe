@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Messim.UI.Authentication
+namespace PSBlog.Authentication
 {
     public class PSBlogRoleProvider : System.Web.Security.RoleProvider
     {

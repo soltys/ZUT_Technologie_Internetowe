@@ -22,5 +22,15 @@ namespace PSBlog.Repository
         {
             return _db.Users.Any() && _db.Users.ToList().Any(x => x.UserName == username);
         }
+
+        public bool IsUserHaveBlog(string userName)
+        {
+            return _db.Blogs.Any(blog => blog.Owner.UserName == userName);
+        }
+
+        public Blog GetUserBlog(string userName)
+        {
+            return _db.Blogs.First(blog => blog.Owner.UserName == userName);
+        }
     }
 }

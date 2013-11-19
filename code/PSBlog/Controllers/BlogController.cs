@@ -41,6 +41,10 @@ namespace PSBlog.Controllers
         // GET: /Blog/Create
         public ActionResult Create()
         {
+            if (_userRepository.IsUserHaveBlog(User.Identity.Name))
+            {
+                return RedirectToAction("Details");
+            }
             return View();
         }
 
@@ -50,6 +54,7 @@ namespace PSBlog.Controllers
         [Authorize]
         public ActionResult Create([Bind(Include = "Id,Title")] Blog blog)
         {
+           
             if (ModelState.IsValid)
             {
                 blog.UrlSlug = Slug.GenerateSlug(blog.Title);
@@ -67,6 +72,15 @@ namespace PSBlog.Controllers
 
         public ActionResult Details(string blogSlug)
         {
+            if (string.IsNullOrWhiteSpace(blogSlug))
+            {
+                if (User.Identity.IsAuthenticated && _userRepository.IsUserHaveBlog(User.Identity.Name))
+                {
+                    Blog userBlog = _userRepository.GetUserBlog(User.Identity.Name);
+                    return View(userBlog);
+                }
+                return RedirectToAction("List");
+            }
             Blog blog = _blogRepository.GetBlogBySlugUrl(blogSlug);
             return View(blog);
         }
