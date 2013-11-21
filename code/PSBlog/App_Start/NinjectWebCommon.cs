@@ -17,6 +17,7 @@ namespace PSBlog.App_Start
     using PSBlog.Authentication;
     using PSBlog.Repository;
     using Ninject.Extensions.Logging;
+    using System.Web.Security;
 
     public static class NinjectWebCommon 
     {
@@ -53,9 +54,13 @@ namespace PSBlog.App_Start
             kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
             
             RegisterServices(kernel);
+
+            //kernel.Inject(Membership.Provider);
+            //kernel.Inject(Roles.Provider);
+
             ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory(kernel));
             DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
-                        
+            
             return kernel;
         }
 

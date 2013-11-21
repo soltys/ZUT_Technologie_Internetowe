@@ -7,9 +7,10 @@ using System.Web;
 
 namespace PSBlog.Repository
 {
-    internal class UserRepository : RepositoryBase<User>, IUserRepository 
+    internal class UserRepository : RepositoryBase<User>, IUserRepository
     {
-        public UserRepository(PSBlogContext context):base(context)
+        public UserRepository(PSBlogContext context)
+            : base(context)
         {
 
         }
@@ -31,6 +32,13 @@ namespace PSBlog.Repository
         public Blog GetUserBlog(string userName)
         {
             return _db.Blogs.First(blog => blog.Owner.UserName == userName);
+        }
+
+
+        public IEnumerable<string> GetRolesForUser(string username)
+        {
+            return _db.Users.First(user => user.UserName == username).Roles.Select(role => role.Name);
+
         }
     }
 }

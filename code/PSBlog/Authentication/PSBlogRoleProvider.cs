@@ -1,17 +1,35 @@
-﻿using System;
+﻿using Ninject;
+using Ninject.Extensions.Logging;
+using PSBlog.Repository;
+using System;
+using System.Linq;
+using System.Web.Mvc;
 namespace PSBlog.Authentication
 {
-    public class PSBlogRoleProvider : System.Web.Security.RoleProvider
+    public class PSBlogRoleProvider : System.Web.Security.RoleProvider, IDisposable
     {
+
+        [Inject]
+        public ILogger _logger { get; set; }
+
+        private IUserRepository _userRepository;
+
+        private bool _disposed;
+
+        public PSBlogRoleProvider()
+        {
+            _userRepository = DependencyResolver.Current.GetService<IUserRepository>();
+        }
+
         public override bool IsUserInRole(string username, string roleName)
         {
-
-            return true;
+            var userRoles = _userRepository.GetRolesForUser(username).ToArray();
+            return userRoles.Any(role => role == roleName);            
         }
 
         public override string[] GetRolesForUser(string username)
         {
-            return new[] { "admin", "default" };
+            return _userRepository.GetRolesForUser(username).ToArray();
         }
 
         public override void CreateRole(string roleName)
@@ -58,6 +76,34 @@ namespace PSBlog.Authentication
         {
             get { throw new NotImplementedException(); }
             set { throw new NotImplementedException(); }
+        }
+
+
+        public void Dispose()
+        {
+            Dispose(true);
+
+            // Call SupressFinalize in case a subclass implements a finalizer.
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    if (_userRepository != null)
+                    {
+                        _userRepository.Dispose();
+                        _logger.Info("Repository Disposed " + ToString());
+                    }
+                }
+
+                _userRepository = null;
+                // Indicate that the instance has been disposed.
+                _disposed = true;
+            }
         }
     }
 }

@@ -37,7 +37,7 @@ namespace PSBlogs.Controllers
 
         [HttpPost]
         public ActionResult Login(LoginModel model, string returnUrl)
-        {           
+        {
             if (!ValidateLogOn(model.User.UserName, model.User.Password))
             {
                 return View();
@@ -95,7 +95,7 @@ namespace PSBlogs.Controllers
             _userRepository.Add(registerModel.User);
             _userRepository.Save();
 
-            FormsAuthentication.SetAuthCookie(registerModel.User.UserName,false);
+            FormsAuthentication.SetAuthCookie(registerModel.User.UserName, false);
 
             return RedirectToAction("Index", "Home");
         }
@@ -104,7 +104,7 @@ namespace PSBlogs.Controllers
         {
             if (String.IsNullOrEmpty(username))
             {
-                ModelState.AddModelError("username", "You must enter user name");                
+                ModelState.AddModelError("username", "You must enter user name");
             }
             if (String.IsNullOrEmpty(password))
             {
@@ -130,11 +130,11 @@ namespace PSBlogs.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            if(disposing)
+            if (disposing)
             {
                 _userRepository.Dispose();
             }
-            
+
             base.Dispose(disposing);
         }
     }

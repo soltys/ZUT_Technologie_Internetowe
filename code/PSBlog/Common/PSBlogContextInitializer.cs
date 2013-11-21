@@ -14,8 +14,7 @@ namespace PSBlog.Common
         {
             Role administrator = new Role()
             {
-                Name = "Administrator",
-                PermissionLevel = 1000
+                Name = "admin",                
             };
             context.Roles.Add(administrator);
 
@@ -23,7 +22,7 @@ namespace PSBlog.Common
             {
                 UserName = "admin",
                 Password = SHA.CreateSHA1Hash("milk"),
-                Role = administrator
+                Roles = new[] { administrator }
             };
             context.Users.Add(admin);
 

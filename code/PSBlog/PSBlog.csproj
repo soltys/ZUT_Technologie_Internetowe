@@ -166,6 +166,7 @@
     <Compile Include="Authentication\IPSBlogMembershipProvider.cs" />
     <Compile Include="Authentication\PSBlogMembershipProvider.cs" />
     <Compile Include="Authentication\PSBlogRoleProvider.cs" />
+    <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Models\IUrlSlug.cs" />
     <Compile Include="Repository\CommentRepository.cs" />
     <Compile Include="Common\NinjectDependencyResolver.cs" />
@@ -329,6 +330,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Filters\" />
+    <Folder Include="Views\Post\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

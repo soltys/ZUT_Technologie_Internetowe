@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 
 namespace PSBlog.Repository
 {
-    public interface IUserRepository:IRepository<User>
+    public interface IUserRepository : IRepository<User>
     {
         User FindByUserName(string username);
         bool IsUserNameTaken(string userName);
         bool IsUserHaveBlog(string userName);
         Blog GetUserBlog(string userName);
+
+        IEnumerable<string> GetRolesForUser(string username);
     }
 }

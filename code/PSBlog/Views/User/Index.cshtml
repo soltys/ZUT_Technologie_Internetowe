@@ -6,7 +6,10 @@
 <h2>Index</h2>
 
 <p>@Html.ActionLink("Log out", "LogOut")</p>
-
+@if(User.IsInRole("admin"))
+{
+    <span>Only for admins</span>
+}
 <p>
     @Html.ActionLink("Create New Blog", "Create","Blog")
 </p>
