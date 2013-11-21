@@ -30,7 +30,7 @@ namespace PSBlog.Repository
             return _db.Set<T>().ToList();
         }
 
-        public void Add(T entity)
+        public virtual void Add(T entity)
         {
             _db.Set<T>().Add(entity);
         }

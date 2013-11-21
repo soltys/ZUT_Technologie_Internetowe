@@ -36,16 +36,17 @@ namespace PSBlog.Common
 
             Post post = new Post
             {
-                Title = "Default post title",
-                Content = "<p>asd</p>",
+                Title = "Hello, World",
+                Content = "<p>This is my new blog!</p>",
                 DatePosted = DateTime.Now,
                 Tags = new[] { tag }
             };
+            post.UrlSlug = Slug.GenerateSlug(post.Title);
             context.Posts.Add(post);
 
             Blog defaultBlog = new Blog
             {
-                Title = "Default blog Title",
+                Title = "I <3 Blogs",
                 Owner = admin,
                 Posts = new[]{post}
             };

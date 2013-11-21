@@ -3,7 +3,7 @@ using PSBlog.Models;
 
 namespace PSBlog.Repository
 {
-    public class PostRepository : RepositoryBase<Post>, IPostRepository 
+    internal class PostRepository : UrlSlugRepository<Post>, IPostRepository 
     {
         public PostRepository(PSBlogContext context):base(context)
         {

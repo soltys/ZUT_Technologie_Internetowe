@@ -11,5 +11,7 @@ namespace PSBlog.Repository
     {
         User FindByUserName(string username);
         bool IsUserNameTaken(string userName);
+        bool IsUserHaveBlog(string userName);
+        Blog GetUserBlog(string userName);
     }
 }

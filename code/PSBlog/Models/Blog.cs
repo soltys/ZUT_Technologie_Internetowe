@@ -6,7 +6,7 @@ using System.Web;
 
 namespace PSBlog.Models
 {
-    public class Blog : IIdentifiable
+    public class Blog : IIdentifiable, PSBlog.Models.IUrlSlug
     {
         public int Id { get; set; }
         [Required]

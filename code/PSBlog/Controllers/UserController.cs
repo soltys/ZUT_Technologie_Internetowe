@@ -1,4 +1,4 @@
-﻿using Messim.UI.Authentication;
+﻿
 using PSBlog.Authentication;
 using PSBlog.Models;
 using PSBlog.Repository;
@@ -126,8 +126,6 @@ namespace PSBlogs.Controllers
         public ActionResult List()
         {
             return View(_userRepository.FetchAll());
-     
-        
         }
 
         protected override void Dispose(bool disposing)
