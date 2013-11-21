@@ -1,6 +1,6 @@
-﻿
-using PSBlog.Authentication;
+﻿using PSBlog.Authentication;
 using PSBlog.Models;
+using PSBlog.Properties;
 using PSBlog.Repository;
 using PSBlog.Util;
 using PSBlog.ViewModels;
@@ -37,7 +37,7 @@ namespace PSBlogs.Controllers
 
         [HttpPost]
         public ActionResult Login(LoginModel model, string returnUrl)
-        {           
+        {
             if (!ValidateLogOn(model.User.UserName, model.User.Password))
             {
                 return View();
@@ -95,7 +95,7 @@ namespace PSBlogs.Controllers
             _userRepository.Add(registerModel.User);
             _userRepository.Save();
 
-            FormsAuthentication.SetAuthCookie(registerModel.User.UserName,false);
+            FormsAuthentication.SetAuthCookie(registerModel.User.UserName, false);
 
             return RedirectToAction("Index", "Home");
         }
@@ -104,7 +104,7 @@ namespace PSBlogs.Controllers
         {
             if (String.IsNullOrEmpty(username))
             {
-                ModelState.AddModelError("username", "You must enter user name");                
+                ModelState.AddModelError("username", "You must enter user name");
             }
             if (String.IsNullOrEmpty(password))
             {
@@ -123,18 +123,52 @@ namespace PSBlogs.Controllers
             return ModelState.IsValid;
         }
 
+        //[Authorize(Roles = "admin")]
         public ActionResult List()
         {
             return View(_userRepository.FetchAll());
         }
 
+        public ActionResult GrantAdminRole(int id)
+        {
+            User selectedUser = _userRepository.FindById(id);
+            _userRepository.GrantAdminRole(selectedUser);
+            _userRepository.Save();
+            return RedirectToAction("List");
+        }
+
+        public ActionResult TakeAwayAdminRole(int id)
+        {
+            User selectedUser = _userRepository.FindById(id);
+
+            if (selectedUser.UserName != Settings.Default.SuperAdminName)
+            {
+                _userRepository.TakeAwayAdminRole(selectedUser);
+                _userRepository.Save();
+            }
+
+            return RedirectToAction("List");
+        }
+
+        public ActionResult Delete(int id)
+        {
+
+            User selectedUser = _userRepository.FindById(id);
+            if (selectedUser.UserName != Settings.Default.SuperAdminName)
+            {
+                _userRepository.Remove(selectedUser);
+                _userRepository.Save();
+            }
+            return RedirectToAction("List");
+        }
+
         protected override void Dispose(bool disposing)
         {
-            if(disposing)
+            if (disposing)
             {
                 _userRepository.Dispose();
             }
-            
+
             base.Dispose(disposing);
         }
     }

@@ -13,5 +13,7 @@ namespace PSBlog.Repository
         bool IsUserNameTaken(string userName);
         bool IsUserHaveBlog(string userName);
         Blog GetUserBlog(string userName);
+        void GrantAdminRole(User user);
+        void TakeAwayAdminRole(User user);
     }
 }

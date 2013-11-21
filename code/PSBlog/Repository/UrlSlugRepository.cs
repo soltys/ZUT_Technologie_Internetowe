@@ -9,9 +9,9 @@ using PSBlog.Common;
 
 namespace PSBlog.Repository
 {
-    abstract internal class UrlSlugRepository<T> : RepositoryBase<T> where T : class,IUrlSlug
+    abstract internal class UrlSlugRepository<T> : RepositoryBase<T> where T : class,IUrlSlug,IIdentifiable
     {
-        public UrlSlugRepository(PSBlogContext context)
+        protected UrlSlugRepository(PSBlogContext context)
             : base(context)
         {
 

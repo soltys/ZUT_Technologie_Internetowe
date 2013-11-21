@@ -1,4 +1,5 @@
 ﻿using PSBlog.Models;
+using PSBlog.Properties;
 using PSBlog.Util;
 using System;
 using System.Collections.Generic;
@@ -14,18 +15,25 @@ namespace PSBlog.Common
         {
             Role administrator = new Role()
             {
-                Name = "Administrator",
+                Name = Settings.Default.SuperAdminRole,
                 PermissionLevel = 1000
             };
             context.Roles.Add(administrator);
 
             User admin = new User
             {
-                UserName = "admin",
+                UserName = Settings.Default.SuperAdminName,
                 Password = SHA.CreateSHA1Hash("milk"),
-                Role = administrator
+                Roles = new[] { administrator }
             };
             context.Users.Add(admin);
+
+            User normalUser = new User
+            {
+                UserName = "normal",
+                Password = SHA.CreateSHA1Hash("milk"),
+            };
+            context.Users.Add(normalUser);
 
             Tag tag = new Tag()
             {
@@ -48,7 +56,7 @@ namespace PSBlog.Common
             {
                 Title = "I <3 Blogs",
                 Owner = admin,
-                Posts = new[]{post}
+                Posts = new[] { post }
             };
             defaultBlog.UrlSlug = Slug.GenerateSlug(defaultBlog.Title);
 
