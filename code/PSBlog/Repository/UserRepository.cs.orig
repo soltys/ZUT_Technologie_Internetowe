@@ -37,12 +37,15 @@ namespace PSBlog.Repository
             return _db.Blogs.First(blog => blog.Owner.UserName == userName);
         }
 
+
+<<<<<<< HEAD
         public IEnumerable<string> GetRolesForUser(string username)
         {
             return _db.Users.First(user => user.UserName == username).Roles.Select(role => role.Name);
-        }
+
+=======
         public void GrantAdminRole(User user)
-        { 
+        {
             var adminRole = _db.Roles.First(role => role.Name == Settings.Default.SuperAdminRole);
             user.Roles.Add(adminRole);
             _db.Entry(user).State = EntityState.Modified;
@@ -53,6 +56,7 @@ namespace PSBlog.Repository
             var adminRole = user.Roles.First(role => role.Name == Settings.Default.SuperAdminRole);
             user.Roles.Remove(adminRole);
             _db.Entry(user).State = EntityState.Modified;
+>>>>>>> f13dd3d288b051bb60e873129e9ae486a3cfae4d
         }
     }
 }

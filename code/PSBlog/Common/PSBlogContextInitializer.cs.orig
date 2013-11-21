@@ -15,7 +15,12 @@ namespace PSBlog.Common
         {
             Role administrator = new Role()
             {
+<<<<<<< HEAD
+                Name = "admin",                
+=======
                 Name = Settings.Default.SuperAdminRole,
+                PermissionLevel = 1000
+>>>>>>> f13dd3d288b051bb60e873129e9ae486a3cfae4d
             };
             context.Roles.Add(administrator);
 

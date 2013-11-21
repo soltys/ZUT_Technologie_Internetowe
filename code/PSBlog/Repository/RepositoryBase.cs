@@ -8,21 +8,27 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PSBlog.Models;
 
 
 namespace PSBlog.Repository
 {
-    public abstract class RepositoryBase<T> where T : class
-    {       
-        
+    public abstract class RepositoryBase<T> where T : class,IIdentifiable
+    {
+
         protected PSBlogContext _db;
         private bool _disposed;
         private readonly ILogger _log;
-        public RepositoryBase(PSBlogContext db)
+        protected RepositoryBase(PSBlogContext db)
         {
             _db = db;
             var logfac = DependencyResolver.Current.GetService<ILoggerFactory>();
             _log = logfac.GetCurrentClassLogger();
+        }
+
+        public T FindById(int id)
+        {
+            return _db.Set<T>().First(el => el.Id == id);
         }
 
         public IList<T> FetchAll()
@@ -33,6 +39,11 @@ namespace PSBlog.Repository
         public virtual void Add(T entity)
         {
             _db.Set<T>().Add(entity);
+        }
+
+        public void Remove(T entity)
+        {
+            _db.Set<T>().Remove(entity);
         }
 
         public void Save()

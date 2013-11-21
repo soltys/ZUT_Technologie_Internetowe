@@ -168,6 +168,11 @@
     <Compile Include="Authentication\PSBlogRoleProvider.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Models\IUrlSlug.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Repository\CommentRepository.cs" />
     <Compile Include="Common\NinjectDependencyResolver.cs" />
     <Compile Include="Common\PSBlogContext.cs" />
@@ -282,6 +287,10 @@
     <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Repository\RepositoryClassDiagram.cd" />
     <Content Include="Models\ModelClassDiagram.cd" />
+    <Content Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

@@ -10,7 +10,9 @@ namespace PSBlog.Repository
     public interface IRepository<T> : IDisposable where T : IIdentifiable
     {
         IList<T> FetchAll();
+        T FindById(int id);
         void Add(T entity);
+        void Remove(T entity);
         void Save();
     }
 }
