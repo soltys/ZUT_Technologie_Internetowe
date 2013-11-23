@@ -123,12 +123,13 @@ namespace PSBlogs.Controllers
             return ModelState.IsValid;
         }
 
-        //[Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin")]
         public ActionResult List()
         {
-            return View(_userRepository.FetchAll());
+            return View(_userRepository.FetchAll().ToList());
         }
 
+        [Authorize(Roles = "admin")]
         public ActionResult GrantAdminRole(int id)
         {
             User selectedUser = _userRepository.FindById(id);
@@ -137,6 +138,7 @@ namespace PSBlogs.Controllers
             return RedirectToAction("List");
         }
 
+        [Authorize(Roles = "admin")]
         public ActionResult TakeAwayAdminRole(int id)
         {
             User selectedUser = _userRepository.FindById(id);
@@ -150,6 +152,7 @@ namespace PSBlogs.Controllers
             return RedirectToAction("List");
         }
 
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int id)
         {
 

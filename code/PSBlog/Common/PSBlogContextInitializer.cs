@@ -9,7 +9,7 @@ using System.Web;
 
 namespace PSBlog.Common
 {
-    public class PSBlogContextInitializer : DropCreateDatabaseAlways<PSBlogContext>
+    public class PSBlogContextInitializer : DropCreateDatabaseIfModelChanges<PSBlogContext>
     {
         protected override void Seed(PSBlogContext context)
         {
@@ -23,7 +23,7 @@ namespace PSBlog.Common
             {
                 UserName = Settings.Default.SuperAdminName,
                 Password = SHA.CreateSHA1Hash("milk"),
-                Roles = new[] { administrator }
+                Roles = new List<Role>() { administrator }
             };
             context.Users.Add(admin);
 

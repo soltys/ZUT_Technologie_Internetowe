@@ -23,7 +23,7 @@ namespace PSBlog.Authentication
 
         public override bool IsUserInRole(string username, string roleName)
         {
-            var userRoles = _userRepository.GetRolesForUser(username).ToArray();
+            var userRoles = _userRepository.GetRolesForUser(username);
             return userRoles.Any(role => role == roleName);            
         }
 

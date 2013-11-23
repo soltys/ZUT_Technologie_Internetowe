@@ -4,6 +4,16 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using PSBlog.Models;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Core.Objects;
+using System.Text;
+using System.Reflection;
+using System.Data.Entity.Core.EntityClient;
+using System.Globalization;
+using System.Data.Common;
+using Ninject;
+using Ninject.Extensions.Logging;
+using System.Data.SqlClient;
 namespace PSBlog.Common
 {
     public class PSBlogContext : DbContext
@@ -14,5 +24,14 @@ namespace PSBlog.Common
         public DbSet<Post> Posts { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Comment> Comments { get; set; }
+
+        [Inject]
+        public ILogger Logger { get; set; }
+        public PSBlogContext()
+        {
+
+        }
+
+
     }
 }

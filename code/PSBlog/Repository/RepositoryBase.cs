@@ -26,12 +26,12 @@ namespace PSBlog.Repository
             _log = logfac.GetCurrentClassLogger();
         }
 
-        public T FindById(int id)
+        public virtual T FindById(int id)
         {
             return _db.Set<T>().First(el => el.Id == id);
         }
 
-        public IList<T> FetchAll()
+        public virtual IList<T> FetchAll()
         {
             return _db.Set<T>().ToList();
         }

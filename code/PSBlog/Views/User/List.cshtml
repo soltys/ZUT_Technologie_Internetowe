@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<PSBlog.Models.User>
-
+@using PSBlog.Properties
 @{
     ViewBag.Title = "List";
 }
@@ -20,20 +20,29 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Password)
-        </td>
-        <td>
-            @Html.ActionLink("Grant admin role", "GrantAdminRole", new { id=item.Id }) 
-            @Html.ActionLink("Take away admin role", "TakeAwayAdminRole", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @if (Roles.IsUserInRole(item.UserName, "admin"))
+                { 
+                    @Html.ActionLink("Take away admin role", "TakeAwayAdminRole", new { id = item.Id }) 
+                }
+                else
+                {
+                    @Html.ActionLink("Grant admin role", "GrantAdminRole", new { id = item.Id })
+                }
+
+
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>
