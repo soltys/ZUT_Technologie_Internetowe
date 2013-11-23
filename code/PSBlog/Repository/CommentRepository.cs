@@ -5,8 +5,8 @@ namespace PSBlog.Repository
 {
     public class CommentRepository : RepositoryBase<Comment>, ICommentRepository
     {
-        public CommentRepository(PSBlogContext context)
-            : base(context)
+        public CommentRepository()
+            
         {
 
         }

@@ -9,7 +9,7 @@ using System.Web;
 
 namespace PSBlog.Common
 {
-    public class PSBlogContextInitializer : DropCreateDatabaseIfModelChanges<PSBlogContext>
+    public class PSBlogContextInitializer : DropCreateDatabaseAlways<PSBlogContext>
     {
         protected override void Seed(PSBlogContext context)
         {

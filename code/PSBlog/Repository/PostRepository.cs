@@ -5,7 +5,7 @@ namespace PSBlog.Repository
 {
     internal class PostRepository : UrlSlugRepository<Post>, IPostRepository 
     {
-        public PostRepository(PSBlogContext context):base(context)
+        public PostRepository()
         {
                 
         }

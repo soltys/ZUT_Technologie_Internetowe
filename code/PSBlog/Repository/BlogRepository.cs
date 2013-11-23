@@ -9,22 +9,23 @@ namespace PSBlog.Repository
 {
     internal class BlogRepository : UrlSlugRepository<Blog>, IBlogRepository
     {
-        public BlogRepository(PSBlogContext context)
-            : base(context)
+        public BlogRepository()
         {
         }
 
         public Blog GetBlogBySlugUrl(string slugUrl)
         {
-            return _db.Blogs
-                .Include(x => x.Posts)
-                .Include(x => x.Posts.Select(p => p.Tags))
-                .Include(x => x.Owner)
-                .Single(b => b.UrlSlug == slugUrl);
-
+            using (PSBlogContext db = new PSBlogContext())
+            {
+                return db.Blogs
+                    .Include(x => x.Posts)
+                    .Include(x => x.Posts.Select(p => p.Tags))
+                    .Include(x => x.Owner)
+                    .Single(b => b.UrlSlug == slugUrl);
+            }
         }
-       
 
-        
+
+
     }
 }

@@ -9,10 +9,9 @@ using PSBlog.Common;
 
 namespace PSBlog.Repository
 {
-    abstract internal class UrlSlugRepository<T> : RepositoryBase<T> where T : class,IUrlSlug,IIdentifiable
+    abstract internal class UrlSlugRepository<T> : RepositoryBase<T> where T : class,IUrlSlug, IIdentifiable
     {
-        protected UrlSlugRepository(PSBlogContext context)
-            : base(context)
+        protected UrlSlugRepository()   
         {
 
         }
@@ -26,23 +25,29 @@ namespace PSBlog.Repository
 
         protected string GenerateUniqueSlug<T>(string urlSlug) where T : class ,IUrlSlug
         {
-            bool unique = !_db.Set<T>().Any(x => x.UrlSlug == urlSlug);
-            if (!unique)
+            using (PSBlogContext db = new PSBlogContext())
             {
-               return GenerateUniqueSlug<T>(urlSlug, 1);
+                bool unique = !db.Set<T>().Any(x => x.UrlSlug == urlSlug);
+                if (!unique)
+                {
+                    return GenerateUniqueSlug<T>(urlSlug, 1);
+                }
+                return urlSlug;
             }
-            return urlSlug;
         }
 
         private string GenerateUniqueSlug<T>(string urlSlug, int numberTries) where T : class ,IUrlSlug
         {
-            string newSlug = urlSlug + numberTries;
-            bool unique = !_db.Set<T>().Any(x => x.UrlSlug == newSlug);
-            if (!unique)
+            using (PSBlogContext db = new PSBlogContext())
             {
-                newSlug = GenerateUniqueSlug<T>(newSlug, ++numberTries);
+                string newSlug = urlSlug + numberTries;
+                bool unique = !db.Set<T>().Any(x => x.UrlSlug == newSlug);
+                if (!unique)
+                {
+                    newSlug = GenerateUniqueSlug<T>(newSlug, ++numberTries);
+                }
+                return newSlug;
             }
-            return newSlug;
         }
     }
 }
