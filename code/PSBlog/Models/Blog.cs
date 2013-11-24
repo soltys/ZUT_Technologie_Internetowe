@@ -13,6 +13,12 @@ namespace PSBlog.Models
         public string Title { get; set; }
         public string UrlSlug { get; set; }
         public virtual User Owner { get; set; }
-        public virtual IList<Post> Posts { get; set; }
+
+        private List<Post> _posts;
+        public virtual List<Post> Posts
+        {
+            get { return _posts ?? (_posts = new List<Post>()); }
+            set { _posts = value; }
+        }
     }
 }

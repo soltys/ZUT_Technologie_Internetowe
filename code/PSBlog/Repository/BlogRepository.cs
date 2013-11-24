@@ -25,7 +25,20 @@ namespace PSBlog.Repository
             }
         }
 
+        public void AddPost(int blogId, Post post)
+        {
+            using (PSBlogContext db = new PSBlogContext())
+            {
+                Blog blog = db.Blogs.First(b => b.Id == blogId);
+                blog.Posts.Add(post);
+                int rowsChanged = db.SaveChanges();
+                if (rowsChanged == 0)
+                {
+                    //no rows are changed
+                    System.Diagnostics.Debugger.Break();
+                }
+            }
 
-
+        }
     }
 }

@@ -61,9 +61,13 @@ namespace PSBlog.Repository
         {
             using (PSBlogContext db = new PSBlogContext())
             {
-                return db.Blogs.First(blog => blog.Owner.UserName == userName);
+                return db.Blogs
+                    .Include(b => b.Posts)
+                    .Include(b => b.Posts.Select(p => p.Tags))
+                    .FirstOrDefault(blog => blog.Owner.UserName == userName);
             }
         }
+
         public IEnumerable<string> GetRolesForUser(string username)
         {
             using (PSBlogContext db = new PSBlogContext())
@@ -88,7 +92,7 @@ namespace PSBlog.Repository
                 {
                     user.Roles.Add(adminRole);
                 }
-                
+
                 db.Entry(user).State = EntityState.Modified;
                 int count = db.SaveChanges();
             }

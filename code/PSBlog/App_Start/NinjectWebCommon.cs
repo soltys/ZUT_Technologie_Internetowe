@@ -75,7 +75,7 @@ namespace PSBlog.App_Start
             kernel.Bind<IPSBlogMembershipProvider>().To<PSBlogMembershipProvider>();
             kernel.Bind<IUserRepository>().To<UserRepository>();
             kernel.Bind<IBlogRepository>().To<BlogRepository>();
-            
+            kernel.Bind<IPostRepository>().To<PostRepository>();            
         }        
     }
 }

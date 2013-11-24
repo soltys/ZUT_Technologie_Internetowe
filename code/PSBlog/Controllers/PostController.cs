@@ -2,6 +2,8 @@
 using Ninject.Extensions.Logging;
 using PSBlog.Models;
 using PSBlog.Repository;
+using PSBlog.Util;
+using PSBlog.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,11 +19,12 @@ namespace PSBlog.Controllers
 
         private IBlogRepository _blogRepository;
         private IUserRepository _userRepository;
-        public PostController(IBlogRepository blogRepository, IUserRepository userRepository)
+        private IPostRepository _postRepository;
+        public PostController(IBlogRepository blogRepository, IUserRepository userRepository,IPostRepository postRepository)
         {
-
             _blogRepository = blogRepository;
             _userRepository = userRepository;
+            _postRepository = postRepository;
         }
 
         //
@@ -37,16 +40,30 @@ namespace PSBlog.Controllers
         }
 
         [Authorize]
+        
         public ActionResult Create()
         {
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+                Blog userBlog = _userRepository.GetUserBlog(User.Identity.Name);
+                if (userBlog != null)
+                {
+                    return View(new CreatePostModel { Blog = userBlog, Post = new Post() });
+                }
+            }
+            return RedirectToAction("List", "Blog");
         }
 
-        [HttpPost]
+        [HttpPost]        
         [Authorize]
-        public ActionResult Create(Post post)
+        [ValidateInput(false)]
+        public ActionResult Create([ModelBinder(typeof(CreatePostCustomDataBinder))] CreatePostModel model)
         {
-            return View("Details", "Blog");
+            model.Post.UrlSlug = Slug.GenerateSlug(model.Post.Title);
+            
+            _postRepository.Add(model.Post);
+            _blogRepository.AddPost(model.Blog.Id, model.Post);
+            return RedirectToAction("Details", "Blog");
         }
 
 

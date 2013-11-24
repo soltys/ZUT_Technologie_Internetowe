@@ -11,20 +11,24 @@ using PSBlog.Common;
 using Ninject.Extensions.Logging;
 using PSBlog.Repository;
 using PSBlog.Util;
+using Ninject;
 
 namespace PSBlog.Controllers
 {
     public class BlogController : Controller
     {
 
-        private readonly ILogger _logger;
+        [Inject]
+        public ILogger Logger { get; set; }
         private IBlogRepository _blogRepository;
         private IUserRepository _userRepository;
-        public BlogController(ILogger logger, IBlogRepository blogRepository, IUserRepository userRepository)
+        private IPostRepository _postRepository;
+
+        public BlogController(IBlogRepository blogRepository, IUserRepository userRepository, IPostRepository postRepository)
         {
-            _logger = logger;
             _blogRepository = blogRepository;
             _userRepository = userRepository;
+            _postRepository = postRepository;
         }
         // GET: /Blog/
         public ActionResult Index()
@@ -54,7 +58,7 @@ namespace PSBlog.Controllers
         [Authorize]
         public ActionResult Create([Bind(Include = "Id,Title")] Blog blog)
         {
-           
+
             if (ModelState.IsValid)
             {
                 blog.UrlSlug = Slug.GenerateSlug(blog.Title);
@@ -76,7 +80,7 @@ namespace PSBlog.Controllers
             {
                 if (User.Identity.IsAuthenticated && _userRepository.IsUserHaveBlog(User.Identity.Name))
                 {
-                    Blog userBlog = _userRepository.GetUserBlog(User.Identity.Name);
+                    Blog userBlog = _userRepository.GetUserBlog(User.Identity.Name);                    
                     return View(userBlog);
                 }
                 return RedirectToAction("List");
@@ -89,7 +93,7 @@ namespace PSBlog.Controllers
         {
             if (disposing)
             {
-                _logger.Info("Disposing repositories");
+                Logger.Info("Disposing repositories");
                 _blogRepository.Dispose();
                 _userRepository.Dispose();
             }

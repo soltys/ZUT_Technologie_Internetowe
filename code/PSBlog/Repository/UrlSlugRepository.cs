@@ -17,9 +17,8 @@ namespace PSBlog.Repository
         }
 
         public override void Add(T entity)
-        {
+        {            
             entity.UrlSlug = GenerateUniqueSlug<T>(entity.UrlSlug);
-
             base.Add(entity);
         }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Web.Mvc;
 
 namespace PSBlog.Models
 {
@@ -10,6 +11,7 @@ namespace PSBlog.Models
     {
         public int Id { get; set; }
         public string Title { get; set; }
+        [AllowHtml]
         public string  Content { get; set; }
         public string UrlSlug { get; set; }
         public DateTime DatePosted { get; set; }

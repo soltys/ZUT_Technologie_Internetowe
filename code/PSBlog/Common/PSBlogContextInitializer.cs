@@ -55,7 +55,7 @@ namespace PSBlog.Common
             {
                 Title = "I <3 Blogs",
                 Owner = admin,
-                Posts = new[] { post }
+                Posts = new List<Post> { post }
             };
             defaultBlog.UrlSlug = Slug.GenerateSlug(defaultBlog.Title);
 

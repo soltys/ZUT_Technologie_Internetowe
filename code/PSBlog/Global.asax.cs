@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using PSBlog.Common;
+using PSBlog.ViewModels;
 
 namespace PSBlog
 {
@@ -27,7 +28,7 @@ namespace PSBlog
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
+            ModelBindersConfig.RegisterModelBinders(ModelBinders.Binders);
             Database.SetInitializer(new PSBlog.Common.PSBlogContextInitializer());
             /*
             var context = new PSBlogContext();
@@ -35,4 +36,5 @@ namespace PSBlog
             string script = adapter.ObjectContext.CreateDatabaseScript();*/
         }
     }
+    
 }

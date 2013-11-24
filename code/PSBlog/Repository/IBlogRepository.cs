@@ -10,5 +10,6 @@ namespace PSBlog.Repository
     public interface IBlogRepository:IRepository<Blog>
     {
         Blog GetBlogBySlugUrl(string slugUrl);
+        void AddPost(int blogId, Post post);
     }
 }
