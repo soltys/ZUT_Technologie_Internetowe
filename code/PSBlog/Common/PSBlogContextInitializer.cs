@@ -40,13 +40,28 @@ namespace PSBlog.Common
             };
             context.Tags.Add(tag);
 
+            Comment comment1 = new Comment()
+            {
+                Content = "Comment#1",
+                User = admin
+            };
+
+            Comment comment2 = new Comment()
+            {
+                Content = "Comment#2",
+                User = normalUser
+            };
+
+            context.Comments.Add(comment1);
+            context.Comments.Add(comment2);
 
             Post post = new Post
             {
                 Title = "Hello, World",
                 Content = "<p>This is my new blog!</p>",
                 DatePosted = DateTime.Now,
-                Tags = new[] { tag }
+                Tags = new List<Tag> { tag },
+                Comments = new List<Comment> { comment1, comment2 }
             };
             post.UrlSlug = Slug.GenerateSlug(post.Title);
             context.Posts.Add(post);

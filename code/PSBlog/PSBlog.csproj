@@ -167,6 +167,7 @@
     <Compile Include="Authentication\IPSBlogMembershipProvider.cs" />
     <Compile Include="Authentication\PSBlogMembershipProvider.cs" />
     <Compile Include="Authentication\PSBlogRoleProvider.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Models\IUrlSlug.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -203,9 +204,11 @@
     <Compile Include="Repository\RepositoryBase.cs" />
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Repository\UrlSlugRepository.cs" />
+    <Compile Include="ViewModels\CreateCommentModel.cs" />
     <Compile Include="ViewModels\CreatePostCustomDataBinder.cs" />
     <Compile Include="ViewModels\CreatePostModel.cs" />
     <Compile Include="ViewModels\LoginModel.cs" />
+    <Compile Include="ViewModels\PostDetailsModel.cs" />
     <Compile Include="ViewModels\RegisterModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -606,10 +609,13 @@
     <Content Include="Views\Shared\_BlogLayout.cshtml" />
     <Content Include="Views\Post\Create.cshtml" />
     <Content Include="Views\Post\Details.cshtml" />
+    <Content Include="Views\Post\_CreateComments.cshtml" />
+    <Content Include="Views\Post\_ListComments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Filters\" />
+    <Folder Include="Views\Comment\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

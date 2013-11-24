@@ -12,7 +12,7 @@ namespace PSBlog.Repository
         IList<T> FetchAll();
         T FindById(int id);
         void Add(T entity);
-        void Remove(T entity);
+        void Remove(int id);
         void Save();
     }
 }

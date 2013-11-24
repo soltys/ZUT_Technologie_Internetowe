@@ -159,8 +159,8 @@ namespace PSBlogs.Controllers
             User selectedUser = _userRepository.FindById(id);
             if (selectedUser.UserName != Settings.Default.SuperAdminName)
             {
-                _userRepository.Remove(selectedUser);
-                _userRepository.Save();
+                _userRepository.Remove(id);
+
             }
             return RedirectToAction("List");
         }

@@ -1,0 +1,21 @@
+﻿@model PSBlog.ViewModels.CreateCommentModel
+
+@using (Html.BeginForm("Create", "Comment", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Create comment</h4>
+        @Html.HiddenFor(model => model.ReturnBlogSlug)
+        @Html.HiddenFor(model => model.ReturnPostSlug)
+        @Html.HiddenFor(model => model.UserName)
+        <div>
+            @Html.TextAreaFor(model => model.Content)
+            @Html.ValidationMessageFor(model => model.Content)
+
+        </div>
+        <input type="submit" value="Create" class="btn btn-primary" />
+
+    </div>
+}
+

@@ -6,7 +6,11 @@
 
 <h2>@Model.Title</h2>
 
-<a href="@Url.Action("Create", "Post")" class="btn btn-primary">Create a Post</a>
+@if (User.Identity.IsAuthenticated && Model.Owner.UserName == User.Identity.Name)
+{
+    <a href="@Url.Action("Create", "Post")" class="btn btn-primary">Create a Post</a>
+}
+
 @foreach (var post in Model.Posts)
 {
     <hr />
@@ -33,6 +37,10 @@
             @(new HtmlString(@post.Content))
         </div>
 
+        @if (User.Identity.IsAuthenticated && Model.Owner.UserName == User.Identity.Name)
+        {
+            <a href="@Url.Action("Delete", "Post", new { id = post.Id })" class="btn btn-danger">Remove this post</a>
+        }
     </div>
 
 }

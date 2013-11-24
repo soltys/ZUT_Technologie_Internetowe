@@ -14,9 +14,21 @@ namespace PSBlog.Models
         [AllowHtml]
         public string  Content { get; set; }
         public string UrlSlug { get; set; }
+        [Display(Name = "Posted date")]
         public DateTime DatePosted { get; set; }
 
-        public virtual IList<Tag> Tags { get; set; }
-        public virtual IList<Comment> Comments { get; set; }
+        private List<Tag> _tags;
+        public virtual List<Tag> Tags
+        {
+            get { return _tags ?? (_tags = new List<Tag>()); }
+            set { _tags = value; }
+        }
+
+        private List<Comment> _comments;
+        public virtual List<Comment> Comments
+        {
+            get { return _comments ?? (_comments = new List<Comment>()); }
+            set { _comments = value; }
+        } 
     }
 }

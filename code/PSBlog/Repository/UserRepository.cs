@@ -64,6 +64,7 @@ namespace PSBlog.Repository
                 return db.Blogs
                     .Include(b => b.Posts)
                     .Include(b => b.Posts.Select(p => p.Tags))
+                    .Include(b => b.Owner)
                     .FirstOrDefault(blog => blog.Owner.UserName == userName);
             }
         }

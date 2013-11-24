@@ -1,0 +1,12 @@
+﻿@model IEnumerable<PSBlog.Models.Comment>
+
+<h4>Comments</h4>
+@foreach (var item in Model)
+{
+    <p>
+        <b>@Html.DisplayFor(modelItem => item.User.UserName)</b> |
+        @Html.DisplayFor(modelItem => item.Content)
+    </p>
+    <hr />
+}
+

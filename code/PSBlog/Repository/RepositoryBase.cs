@@ -53,11 +53,12 @@ namespace PSBlog.Repository
 
         }
 
-        public void Remove(T entity)
+        public virtual void Remove(int id)
         {
             using (PSBlogContext db = new PSBlogContext())
-            {
-                db.Set<T>().Remove(entity);
+            {                
+                T entity =  db.Set<T>().First(el => el.Id == id);
+                db.Entry(entity).State = EntityState.Deleted;
                 db.SaveChanges();
             }
 

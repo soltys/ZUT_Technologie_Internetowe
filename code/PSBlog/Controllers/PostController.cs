@@ -65,10 +65,18 @@ namespace PSBlog.Controllers
             return RedirectToAction("Details", "Blog");
         }
 
+        [Authorize]
+        public ActionResult Delete(int id)
+        {
+            
+            _postRepository.Remove(id);
+            return RedirectToAction("Details", "Blog");
+        }
+
         public ActionResult Details(string blogSlug, string postSlug)
         {
-            Post post = _postRepository.GetPost(blogSlug, postSlug);
-            return View(post);
+            PostDetailsModel model = _postRepository.GetPostDetails(blogSlug, postSlug);
+            return View(model);
         }
 
     }

@@ -1,51 +1,39 @@
-﻿@model PSBlog.Models.Post
+﻿@model PSBlog.ViewModels.PostDetailsModel
 
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_BlogLayout.cshtml";
 }
 
-<h2>Details</h2>
+<h3><a href="/b/@Model.Blog.UrlSlug">@Html.DisplayFor(model => model.Blog.Title)</a></h3>
 
 <div>
-    <h4>Post</h4>
-	<hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
+    <h4>@Html.DisplayFor(model => model.Post.Title)</h4>
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+    <dl>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Content)
+            @Html.DisplayNameFor(model => model.Post.DatePosted)
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.Content)
+            @Html.DisplayFor(model => model.Post.DatePosted)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UrlSlug)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UrlSlug)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DatePosted)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DatePosted)
-        </dd>
-
     </dl>
+    @(new HtmlString(@Model.Post.Content))
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<div>
+    @{Html.RenderPartial("~/Views/Post/_ListComments.cshtml", Model.Post.Comments);}
+</div>
+<div>
+    @if (User.Identity.IsAuthenticated)
+    {
+        Html.RenderPartial("~/Views/Post/_CreateComments.cshtml",
+            new PSBlog.ViewModels.CreateCommentModel
+            {
+                ReturnBlogSlug = Model.Blog.UrlSlug,
+                ReturnPostSlug = Model.Post.UrlSlug,
+                UserName = User.Identity.Name
+            });
+    }
+</div>
