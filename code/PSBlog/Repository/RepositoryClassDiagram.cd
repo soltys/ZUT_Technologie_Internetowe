@@ -3,30 +3,30 @@
   <Class Name="PSBlog.Repository.BlogRepository">
     <Position X="0.75" Y="14" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Repository\BlogRepository.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="PSBlog.Repository.RepositoryBase&lt;T&gt;">
-    <Position X="3.75" Y="8" Width="1.5" />
+    <Position X="4.75" Y="8" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAgIAAACAEAEAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAIAAIAAACAEAEAAAAAABAAAAAABAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Repository\RepositoryBase.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PSBlog.Repository.UserRepository">
     <Position X="5.25" Y="11.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <HashCode>AMAAAAAAAAAAAAEAAAAAAAAAAAABAQAAIAAAAIEAAAA=</HashCode>
       <FileName>Repository\UserRepository.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="PSBlog.Repository.PostRepository">
-    <Position X="3.75" Y="14" Width="1.5" />
+    <Position X="3.25" Y="14" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAIAAAAIAAAAAAAAAAIABAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Repository\PostRepository.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -49,28 +49,28 @@
   <Interface Name="PSBlog.Repository.IBlogRepository">
     <Position X="0.5" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Repository\IBlogRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="PSBlog.Repository.IUserRepository">
     <Position X="2.75" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <HashCode>AMAAAAAAAAAAAAEAAAAAAAAAAAAAAQAAIAAAAIEAAAA=</HashCode>
       <FileName>Repository\IUserRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="PSBlog.Repository.IRepository&lt;T&gt;">
     <Position X="3.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAIAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAIAAIAAAAAAAAAAAAAABAAAAAABAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Repository\IRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="PSBlog.Repository.IPostRepository">
     <Position X="5" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAIAAAAAAAAAAIAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Repository\IPostRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
