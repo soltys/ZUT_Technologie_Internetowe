@@ -38,6 +38,7 @@ namespace PSBlog.Repository
             using (PSBlogContext db = new PSBlogContext())
             {
                 return db.Set<T>().ToList();
+                
             }
 
         }
@@ -47,6 +48,7 @@ namespace PSBlog.Repository
             using (PSBlogContext db = new PSBlogContext())
             {
                 db.Set<T>().Add(entity);
+                db.SaveChanges();
             }
 
         }
@@ -56,6 +58,7 @@ namespace PSBlog.Repository
             using (PSBlogContext db = new PSBlogContext())
             {
                 db.Set<T>().Remove(entity);
+                db.SaveChanges();
             }
 
         }

@@ -13,11 +13,19 @@ namespace PSBlog
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+          
+
             routes.MapRoute(
                name: "BlogShortcut",
-               url: "b/{blogSlug}/{postSlug}",
-               defaults: new { controller = "Blog", action = "Details", blogSlug = "", postSlug = UrlParameter.Optional }
-           );            
+               url: "b/{blogSlug}",
+               defaults: new { controller = "Blog", action = "Details", blogSlug = "" }
+           );
+
+            routes.MapRoute(
+          name: "PostShortcut",
+          url: "b/{blogSlug}/{postSlug}",
+          defaults: new { controller = "Post", action = "Details", blogSlug = "", postSlug = "" }
+      );
 
             routes.MapRoute(
                 name: "Default",

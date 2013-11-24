@@ -20,7 +20,7 @@ namespace PSBlog.Controllers
         private IBlogRepository _blogRepository;
         private IUserRepository _userRepository;
         private IPostRepository _postRepository;
-        public PostController(IBlogRepository blogRepository, IUserRepository userRepository,IPostRepository postRepository)
+        public PostController(IBlogRepository blogRepository, IUserRepository userRepository, IPostRepository postRepository)
         {
             _blogRepository = blogRepository;
             _userRepository = userRepository;
@@ -40,7 +40,6 @@ namespace PSBlog.Controllers
         }
 
         [Authorize]
-        
         public ActionResult Create()
         {
             if (User.Identity.IsAuthenticated)
@@ -54,18 +53,23 @@ namespace PSBlog.Controllers
             return RedirectToAction("List", "Blog");
         }
 
-        [HttpPost]        
+        [HttpPost]
         [Authorize]
         [ValidateInput(false)]
         public ActionResult Create([ModelBinder(typeof(CreatePostCustomDataBinder))] CreatePostModel model)
         {
             model.Post.UrlSlug = Slug.GenerateSlug(model.Post.Title);
-            
+
             _postRepository.Add(model.Post);
             _blogRepository.AddPost(model.Blog.Id, model.Post);
             return RedirectToAction("Details", "Blog");
         }
 
+        public ActionResult Details(string blogSlug, string postSlug)
+        {
+            Post post = _postRepository.GetPost(blogSlug, postSlug);
+            return View(post);
+        }
 
     }
 }

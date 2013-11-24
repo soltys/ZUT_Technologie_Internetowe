@@ -6,5 +6,7 @@ namespace PSBlog.Repository
     public interface IPostRepository : PSBlog.Repository.IRepository<Post>
     {
         List<Post> GetAllPosts(int blogId);
+
+        Post GetPost(string blogSlug, string postSlug);
     }
 }

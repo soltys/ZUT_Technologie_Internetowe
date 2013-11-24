@@ -52,6 +52,30 @@ namespace PSBlog.Test
         }
 
         [Test]
+        public void slash_b_empty_to_blog_details()
+        {
+            const string url = "~/b/";
+            RouteHelpers.TestRoute(url, new
+            {
+                Controller = "Blog",
+                Action = "Details",
+                BlogSlug = "",
+            });
+        }
+
+        [Test]
+        public void slash_b_empty_without_ending_slash_to_blog_details()
+        {
+            const string url = "~/b";
+            RouteHelpers.TestRoute(url, new
+            {
+                Controller = "Blog",
+                Action = "Details",
+                BlogSlug = "",
+            });
+        }
+
+        [Test]
         public void slash_b_blogSlug_to_blog_details()
         {
             const string url = "~/b/Soltys_AweSomeBlog";
@@ -69,7 +93,7 @@ namespace PSBlog.Test
             const string url = "~/b/Soltys_AweSomeBlog/Soltys_M_E_G_A_post";
             RouteHelpers.TestRoute(url, new
             {
-                Controller = "Blog",
+                Controller = "Post",
                 Action = "Details",
                 BlogSlug = "Soltys_AweSomeBlog",
                 PostSlug = "Soltys_M_E_G_A_post"

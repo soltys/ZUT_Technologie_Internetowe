@@ -58,13 +58,12 @@ namespace PSBlog.Controllers
         [Authorize]
         public ActionResult Create([Bind(Include = "Id,Title")] Blog blog)
         {
-
             if (ModelState.IsValid)
             {
                 blog.UrlSlug = Slug.GenerateSlug(blog.Title);
                 blog.Owner = _userRepository.FindByUserName(User.Identity.Name);
                 _blogRepository.Add(blog);
-                _blogRepository.Save();
+                
 
                 return RedirectToAction("Details", new { blogSlug = blog.UrlSlug });
             }
@@ -80,7 +79,7 @@ namespace PSBlog.Controllers
             {
                 if (User.Identity.IsAuthenticated && _userRepository.IsUserHaveBlog(User.Identity.Name))
                 {
-                    Blog userBlog = _userRepository.GetUserBlog(User.Identity.Name);                    
+                    Blog userBlog = _userRepository.GetUserBlog(User.Identity.Name);
                     return View(userBlog);
                 }
                 return RedirectToAction("List");

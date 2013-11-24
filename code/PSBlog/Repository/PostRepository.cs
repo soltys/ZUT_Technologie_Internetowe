@@ -26,5 +26,15 @@ namespace PSBlog.Repository
                 return db.Blogs.Include(b => b.Posts).First(b => b.Id == blogId).Posts.ToList();
             }
         }
+
+        public Post GetPost(string blogSlug, string postSlug)
+        {
+            using(PSBlogContext db = new PSBlogContext())
+            {
+                Blog selectedBlog = db.Blogs.Include(b => b.Posts).First(b => b.UrlSlug == blogSlug);
+                Post selectedPost = selectedBlog.Posts.First(p => p.UrlSlug == postSlug);
+                return selectedPost;
+            }
+        }
     }
 }

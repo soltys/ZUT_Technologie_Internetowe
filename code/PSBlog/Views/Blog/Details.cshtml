@@ -6,6 +6,7 @@
 
 <h2>@Model.Title</h2>
 
+<a href="@Url.Action("Create", "Post")" class="btn btn-primary">Create a Post</a>
 @foreach (var post in Model.Posts)
 {
     <hr />
@@ -18,7 +19,7 @@
             </div>
             <div class="col-md-4">
                 <p>
-                    Tags: 
+                    Tags:
                     @foreach (var tag in post.Tags)
                     {
                         <span> @tag.Name</span>
