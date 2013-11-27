@@ -27,7 +27,10 @@ namespace PSBlogs.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            return View();
+            UserProfileModel model = new UserProfileModel();
+            model.IsAdministrator = User.IsInRole("admin");
+            model.IsUserHaveBlog = _userRepository.IsUserHaveBlog(User.Identity.Name);
+            return View(model);
         }
 
         public ActionResult Login()

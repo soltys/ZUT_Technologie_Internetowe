@@ -74,7 +74,10 @@ namespace PSBlog.Repository
             using (PSBlogContext db = new PSBlogContext())
             {
                 var selectedUser = db.Users.Include(u => u.Roles).FirstOrDefault(user => user.UserName == username);
-                db.Entry(selectedUser).Reload();
+                if (selectedUser == null)
+                {                    
+                    return null;
+                }
                 var roles = selectedUser.Roles.Select(role => role.Name);
 
                 var onemoretime = FindById(selectedUser.Id);

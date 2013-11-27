@@ -1,18 +1,31 @@
-﻿
+﻿@model PSBlog.ViewModels.UserProfileModel
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = @User.Identity.Name + "Profile";
 }
 
-<h2>Index</h2>
+<h2>@User.Identity.Name Profile</h2>
 
 <p>@Html.ActionLink("Log out", "LogOut")</p>
-@if(User.IsInRole("admin"))
+
+@if (Model.IsAdministrator)
 {
-    @Html.ActionLink("Manage users","List")
+    @Html.ActionLink("Manage users", "List")
 }
-<p>
-    @Html.ActionLink("Create New Blog", "Create","Blog")
-</p>
+
+
+@if (Model.IsUserHaveBlog)
+{
+    <p>
+        @Html.ActionLink("Delete your blog", "Delete", "Blog")
+    </p>
+}
+else
+{
+    <p>
+        @Html.ActionLink("Create New Blog", "Create", "Blog")
+    </p>
+}
+
 @section scripts{
     <script>
         $(function () {
