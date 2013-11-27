@@ -42,6 +42,23 @@ namespace PSBlog.Controllers
         }
 
 
+        [Authorize]
+        public ActionResult Delete(int id)
+        {
+            if(!_userRepository.IsUserHaveBlog(User.Identity.Name))
+            {
+                return RedirectToAction("Index", "User");
+            }
+
+            Blog selectedBlog = _userRepository.GetUserBlog(User.Identity.Name);
+            if (selectedBlog.Id == id)
+            {
+                _blogRepository.Remove(id);    
+            }
+            
+            return RedirectToAction("Index", "User");
+        }
+
         // GET: /Blog/Create
         public ActionResult Create()
         {

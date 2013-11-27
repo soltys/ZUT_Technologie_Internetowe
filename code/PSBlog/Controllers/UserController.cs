@@ -30,6 +30,12 @@ namespace PSBlogs.Controllers
             UserProfileModel model = new UserProfileModel();
             model.IsAdministrator = User.IsInRole("admin");
             model.IsUserHaveBlog = _userRepository.IsUserHaveBlog(User.Identity.Name);
+
+            if (model.IsUserHaveBlog)
+            {
+                var userBlog = _userRepository.GetUserBlog(User.Identity.Name);
+                model.UserBlogId = userBlog.Id;
+            }
             return View(model);
         }
 

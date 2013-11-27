@@ -55,10 +55,12 @@ namespace PSBlog.Common
             context.Comments.Add(comment1);
             context.Comments.Add(comment2);
 
+            string paragraph1 = string.Format("<p>{0}</p>", Ipsum.GetPhrase(50));
+            string paragraph2 = string.Format("<p>{0}</p>", Ipsum.GetPhrase(75));
             Post post = new Post
             {
                 Title = "Hello, World",
-                Content = "<p>This is my new blog!</p>",
+                Content = paragraph1 + paragraph2,
                 DatePosted = DateTime.Now,
                 Tags = new List<Tag> { tag },
                 Comments = new List<Comment> { comment1, comment2 }

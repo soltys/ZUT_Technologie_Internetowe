@@ -35,7 +35,7 @@ namespace PSBlog.Authentication
             }
             catch(Exception e)
             {
-                return new { };
+                return new string[] { };
             }
             
         }

@@ -16,7 +16,7 @@
 @if (Model.IsUserHaveBlog)
 {
     <p>
-        @Html.ActionLink("Delete your blog", "Delete", "Blog")
+        @Html.ActionLink("Delete your blog", "Delete", "Blog", new { id = Model.UserBlogId },null)
     </p>
 }
 else

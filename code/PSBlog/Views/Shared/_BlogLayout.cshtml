@@ -13,7 +13,9 @@
 <body>
     <div class="container">
         <div class="masthead">
-            <h3 class="text-muted">PsBlogs</h3>
+            <h3 class="text-muted"><a href="/">PsBlogs</a></h3>
+
+                  
             <ul class="nav nav-justified">
                 <li id="nav-home">
                     <a href="@Url.Action("Index","Home")">
@@ -25,12 +27,19 @@
 
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <li id="nav-log-in"><a href=" @Url.Action("Index", "User") "> <span class=" glyphicon glyphicon-user"></span> @User.Identity.Name</a></li>
+                    <li id="nav-log-in"><a href="@Url.Action("Index", "User")"> <span class=" glyphicon glyphicon-user"></span> @User.Identity.Name</a></li>
                 }
                 else
                 {
-                    <li id="nav-log-in"><a href=" @Url.Action("Login", "User") "> <span class=" glyphicon glyphicon-log-in"></span> Log in</a></li>
+                    <li id="nav-log-in"><a href="@Url.Action("Login", "User")"> <span class="glyphicon glyphicon-log-in"></span> Log in</a></li>
                 }
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li id="nav-log-out"><a href="@Url.Action("LogOut", "User")"> <span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
+                    
+                }    
+
             </ul>
         </div>
 

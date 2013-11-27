@@ -9,5 +9,6 @@ namespace PSBlog.ViewModels
     {
         public bool IsAdministrator { get; set; }
         public bool IsUserHaveBlog { get; set; }
+        public int UserBlogId { get; set; }
     }
 }

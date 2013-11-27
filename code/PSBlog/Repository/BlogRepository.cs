@@ -38,7 +38,18 @@ namespace PSBlog.Repository
                     System.Diagnostics.Debugger.Break();
                 }
             }
+        }
 
+        public override void Remove(int id)
+        {
+            using (PSBlogContext db = new PSBlogContext())
+            {
+                Blog blog = db.Blogs.First(b => b.Id == id);
+                blog.Posts.RemoveAll(p => true);
+                db.Entry(blog).State = EntityState.Deleted;
+                db.SaveChanges();
+            }
+            
         }
     }
 }
