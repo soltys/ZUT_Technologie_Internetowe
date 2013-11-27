@@ -29,7 +29,15 @@ namespace PSBlog.Authentication
 
         public override string[] GetRolesForUser(string username)
         {
-            return _userRepository.GetRolesForUser(username).ToArray();
+            try
+            {
+                return _userRepository.GetRolesForUser(username).ToArray();
+            }
+            catch(Exception e)
+            {
+                return new { };
+            }
+            
         }
 
         public override void CreateRole(string roleName)

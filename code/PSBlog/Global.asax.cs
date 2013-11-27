@@ -30,8 +30,8 @@ namespace PSBlog
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             ModelBindersConfig.RegisterModelBinders(ModelBinders.Binders);
             Database.SetInitializer(new PSBlog.Common.PSBlogContextInitializer());
-            /*
-            var context = new PSBlogContext();
+            
+            /*var context = new PSBlogContext();
             IObjectContextAdapter adapter = (IObjectContextAdapter)context;
             string script = adapter.ObjectContext.CreateDatabaseScript();*/
         }
