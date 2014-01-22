@@ -21,6 +21,8 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -206,8 +208,8 @@
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Repository\UrlSlugRepository.cs" />
     <Compile Include="ViewModels\CreateCommentModel.cs" />
-    <Compile Include="ViewModels\CreatePostCustomDataBinder.cs" />
-    <Compile Include="ViewModels\CreatePostModel.cs" />
+    <Compile Include="ViewModels\CreateOrEditPostCustomDataBinder.cs" />
+    <Compile Include="ViewModels\CreateOrEditPostModel.cs" />
     <Compile Include="ViewModels\LoginModel.cs" />
     <Compile Include="ViewModels\PostDetailsModel.cs" />
     <Compile Include="ViewModels\RegisterModel.cs" />
@@ -613,6 +615,7 @@
     <Content Include="Views\Post\_CreateComments.cshtml" />
     <Content Include="Views\Post\_ListComments.cshtml" />
     <Content Include="Views\Shared\_BlogLayout.cshtml" />
+    <Content Include="Views\Post\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -659,6 +662,7 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

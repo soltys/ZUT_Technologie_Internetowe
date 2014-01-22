@@ -53,6 +53,15 @@ namespace PSBlog.Repository
 
         }
 
+        public virtual void Edit(T entity)
+        {
+            using (PSBlogContext db = new PSBlogContext())
+            {
+                db.Entry(entity).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
         public virtual void Remove(int id)
         {
             using (PSBlogContext db = new PSBlogContext())

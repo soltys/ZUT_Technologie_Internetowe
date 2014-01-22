@@ -12,7 +12,7 @@ namespace PSBlog
 
         internal static void RegisterModelBinders(ModelBinderDictionary modelBinderDictionary)
         {
-            modelBinderDictionary.Add(typeof(CreatePostModel), new CreatePostCustomDataBinder());
+            modelBinderDictionary.Add(typeof(CreateOrEditPostModel), new CreateOrEditPostCustomDataBinder());
         }
     }
 }

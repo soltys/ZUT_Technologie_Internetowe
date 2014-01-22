@@ -68,5 +68,17 @@ namespace PSBlog.Repository
                 db.SaveChanges();
             }
         }
+
+        public override void Edit(Post entity)
+        {
+            using (PSBlogContext db = new PSBlogContext())
+            {
+                Post post = db.Posts.First(p => p.Id == entity.Id);
+                post.Title = entity.Title;
+                post.Content = entity.Content;
+                db.Entry(post).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
     }
 }

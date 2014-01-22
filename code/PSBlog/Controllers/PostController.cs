@@ -47,7 +47,7 @@ namespace PSBlog.Controllers
                 Blog userBlog = _userRepository.GetUserBlog(User.Identity.Name);
                 if (userBlog != null)
                 {
-                    return View(new CreatePostModel { Blog = userBlog, Post = new Post() });
+                    return View(new CreateOrEditPostModel { Blog = userBlog, Post = new Post() });
                 }
             }
             return RedirectToAction("List", "Blog");
@@ -56,7 +56,7 @@ namespace PSBlog.Controllers
         [HttpPost]
         [Authorize]
         [ValidateInput(false)]
-        public ActionResult Create([ModelBinder(typeof(CreatePostCustomDataBinder))] CreatePostModel model)
+        public ActionResult Create([ModelBinder(typeof(CreateOrEditPostCustomDataBinder))] CreateOrEditPostModel model)
         {
             model.Post.UrlSlug = Slug.GenerateSlug(model.Post.Title);
 
@@ -68,10 +68,49 @@ namespace PSBlog.Controllers
         [Authorize]
         public ActionResult Delete(int id)
         {
-            
-            _postRepository.Remove(id);
+
+            if (!_userRepository.IsUserHaveBlog(User.Identity.Name))
+            {
+                return RedirectToAction("Details", "Blog");
+            }
+
+            Blog selectedBlog = _userRepository.GetUserBlog(User.Identity.Name);
+            if (selectedBlog.Posts.Any(p => p.Id == id))
+            {
+                _postRepository.Remove(id);
+            }
+
             return RedirectToAction("Details", "Blog");
         }
+
+        [Authorize]
+        public ActionResult Edit(int id)
+        {
+            if (!_userRepository.IsUserHaveBlog(User.Identity.Name))
+            {
+                return RedirectToAction("Details", "Blog");
+            }
+
+            Blog selectedBlog = _userRepository.GetUserBlog(User.Identity.Name);
+            if (!selectedBlog.Posts.Any(p => p.Id == id))
+            {
+                return RedirectToAction("Details", "Blog");
+            }
+
+            return View(new CreateOrEditPostModel { Blog = selectedBlog, Post = selectedBlog.Posts.First(p => p.Id == id) });
+
+        }
+
+        [HttpPost]
+        [Authorize]
+        [ValidateInput(false)]
+        public ActionResult Edit([ModelBinder(typeof(CreateOrEditPostCustomDataBinder))] CreateOrEditPostModel model)
+        {
+            _postRepository.Edit(model.Post);
+            return RedirectToAction("Details", "Blog");
+        }
+
+
 
         public ActionResult Details(string blogSlug, string postSlug)
         {
