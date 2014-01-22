@@ -22,6 +22,8 @@ namespace PSBlog.Repository
             base.Add(entity);
         }
 
+        
+
         protected string GenerateUniqueSlug<T>(string urlSlug) where T : class ,IUrlSlug
         {
             using (PSBlogContext db = new PSBlogContext())

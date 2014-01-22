@@ -45,7 +45,7 @@ namespace PSBlog.Controllers
         [Authorize]
         public ActionResult Delete(int id)
         {
-            if(!_userRepository.IsUserHaveBlog(User.Identity.Name))
+            if (!_userRepository.IsUserHaveBlog(User.Identity.Name))
             {
                 return RedirectToAction("Index", "User");
             }
@@ -53,9 +53,9 @@ namespace PSBlog.Controllers
             Blog selectedBlog = _userRepository.GetUserBlog(User.Identity.Name);
             if (selectedBlog.Id == id)
             {
-                _blogRepository.Remove(id);    
+                _blogRepository.Remove(id);
             }
-            
+
             return RedirectToAction("Index", "User");
         }
 
@@ -78,10 +78,8 @@ namespace PSBlog.Controllers
             if (ModelState.IsValid)
             {
                 blog.UrlSlug = Slug.GenerateSlug(blog.Title);
-                blog.Owner = _userRepository.FindByUserName(User.Identity.Name);
-                _blogRepository.Add(blog);
-                
-
+                var user = _userRepository.FindByUserName(User.Identity.Name);
+                _blogRepository.AddToUser(blog, user);
                 return RedirectToAction("Details", new { blogSlug = blog.UrlSlug });
             }
 

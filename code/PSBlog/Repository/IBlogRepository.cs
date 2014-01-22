@@ -11,5 +11,6 @@ namespace PSBlog.Repository
     {
         Blog GetBlogBySlugUrl(string slugUrl);
         void AddPost(int blogId, Post post);
+        void AddToUser(Blog blog, User user);
     }
 }

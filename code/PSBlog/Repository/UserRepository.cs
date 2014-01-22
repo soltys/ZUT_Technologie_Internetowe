@@ -41,6 +41,33 @@ namespace PSBlog.Repository
             }
         }
 
+        public override void Remove(int id)
+        {
+            using (PSBlogContext db = new PSBlogContext())
+            {
+                var userBlog = db.Blogs.Include(b => b.Owner).FirstOrDefault(blog => blog.Owner.Id == id);
+                if (userBlog != null)
+                {
+                    db.Entry(userBlog).State = EntityState.Deleted;
+                }
+
+                var userComments = db.Comments.Where(c=>c.User.Id == id);
+                foreach(var userComment in userComments)
+                {
+                    db.Entry(userComment).State = EntityState.Deleted;
+                }
+
+                var selectedUser = db.Users.Include(u => u.Roles).FirstOrDefault(user => user.Id == id);
+                if(selectedUser != null)
+                {
+                    db.Entry(selectedUser).State = EntityState.Deleted;
+                }
+                
+                db.SaveChanges();
+            }
+
+        }
+
         public bool IsUserNameTaken(string username)
         {
             using (PSBlogContext db = new PSBlogContext())
@@ -75,7 +102,7 @@ namespace PSBlog.Repository
             {
                 var selectedUser = db.Users.Include(u => u.Roles).FirstOrDefault(user => user.UserName == username);
                 if (selectedUser == null)
-                {                    
+                {
                     return null;
                 }
                 var roles = selectedUser.Roles.Select(role => role.Name);

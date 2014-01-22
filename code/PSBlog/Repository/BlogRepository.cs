@@ -13,10 +13,23 @@ namespace PSBlog.Repository
         {
         }
 
+        public void AddToUser(Blog entity,User user)
+        {
+             using (PSBlogContext db = new PSBlogContext())
+            {
+                
+                entity.UrlSlug = GenerateUniqueSlug<Blog>(entity.UrlSlug);
+                entity.Owner = db.Users.Attach(user);
+                db.Blogs.Add(entity);
+                db.SaveChanges();
+            }
+            
+        }
+
         public Blog GetBlogBySlugUrl(string slugUrl)
         {
             using (PSBlogContext db = new PSBlogContext())
-            {
+            {                
                 return db.Blogs
                     .Include(x => x.Posts)
                     .Include(x => x.Posts.Select(p => p.Tags))
