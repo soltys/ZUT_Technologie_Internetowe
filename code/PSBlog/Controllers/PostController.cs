@@ -58,6 +58,21 @@ namespace PSBlog.Controllers
         [ValidateInput(false)]
         public ActionResult Create([ModelBinder(typeof(CreateOrEditPostCustomDataBinder))] CreateOrEditPostModel model)
         {
+
+            if (string.IsNullOrWhiteSpace(model.Post.Title))
+            {
+                ModelState.AddModelError("Post.Title", "You must specify a title.");
+            }
+
+            if (string.IsNullOrWhiteSpace(model.Post.Content))
+            {
+                ModelState.AddModelError("Post.Content", "You must specify a content.");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
             model.Post.UrlSlug = Slug.GenerateSlug(model.Post.Title);
 
             _postRepository.Add(model.Post);
