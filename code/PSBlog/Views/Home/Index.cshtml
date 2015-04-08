@@ -3,31 +3,25 @@
     ViewBag.Title = "Index";
 }
 
-<!-- Jumbotron -->
-<div class="jumbotron">
-    <h1>Welcome sir or madam!</h1>
-    <p class="lead">Welcome on web page which was created for "Component-based software engineering" course in Faculty of Computer Science on West Pomeranian University of Technology </p>
-    <p><a class="btn btn-lg btn-success" href="/User/Register" role="button">Start with registering new user</a></p>
-</div>
 
-<!-- Example row of columns -->
-<div class="row">
-    <div class="col-lg-4">
-        <h2>Open source</h2>
-        <p>Source code of this website are avaiable on <a href="http://github.com/soltys/">github.com</a> fork it, today!</p>
-        <p><a class="btn btn-primary" href="http://github.com/soltys/" role="button">View details &raquo;</a></p>
-    </div>
-    <div class="col-lg-4">
-        <h2>Component-based software engineering</h2>
-        <p>Component-based software engineering (CBSE) (also known as component-based development (CBD)) is a branch of software engineering that emphasizes the separation of concerns in respect of the wide-ranging functionality available throughout a given software system.</p>
-        <p><a class="btn btn-primary" href="http://en.wikipedia.org/wiki/Component-based_software_engineering" role="button">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-lg-4">
-        <h2>West Pomeranian University of Technology</h2>
-        <p>West Pomeranian University of Technology, Szczecin (Polish: Zachodniopomorski Uniwersytet Technologiczny w Szczecinie, ZUT) is a technical university in Szczecin, Poland.</p>
-        <p><a class="btn btn-primary" href="http://www.zut.edu.pl/west-pomeranian-university-of-technology-szczecin/home/news/current-news.html" role="button">Learn more &raquo;</a></p>
-    </div>
-</div>
+<link href="~/Content/bootstrap/css/landing-page.css" rel="stylesheet" />
+
+    <div class="intro-header">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="intro-message">
+                    <h1>PsBlogs</h1>
+                    <h3>Create your own blog, TODAY!</h3>
+                    <hr class="intro-divider">
+                    <h4>
+                        <p><a class="btn btn-lg btn-success" href="/User/Register" role="button">Start with registering new user</a></p>
+
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>        <!-- /.container -->
+
 
 @section scripts{
     <script>
